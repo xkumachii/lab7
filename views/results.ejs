@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>picksabay express</title>
+    </head>
+    <body>
+        <h1>picks a bay resluts</h1>
+        
+        <form action="/results">
+            Keywerd: <input type="text" name="keyword">
+            <button>search</button>
+            
+        </form> <br>
+        
+        <p>this is a collection of images</p>
+        
+        <img src='<%=images.hits[0].largeImageURL%>' width="300">
+        <img src='<%=images.hits[1].largeImageURL%>' width="300">
+        <img src='<%=images.hits[2].largeImageURL%>' width="300">
+        <img src='<%=images.hits[3].largeImageURL%>' width="300">
+        
+    </body>
+    
+    <!--todo: display shit-->
+</html>
