@@ -1,25 +1,60 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>picksabay express</title>
+        <title>pixabay express</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+        
+        <!--Bootstrap files-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+        <link href = "/css/styles.css" rel = "stylesheet" type = "text/css" />
     </head>
-    <body>
-        <h1>picks a bay resluts</h1>
+    <body class = "text-center">
+        <h1 class="jumbotron">results</h1>
         
         <form action="/results">
-            Keywerd: <input type="text" name="keyword">
-            <button>search</button>
+            Keyword: <input type="text" name="keyword"><br>
+            Orientation: <select name = "orientation">
+                <option>Select</option>
+                <option value = horizontal>Landscape</option>
+                <option value = vertical>Portrait</option>
+            </select>
+                        
+            <button id = "search">Search!</button>
+            <br><br>
             
         </form> <br>
-        
-        <p>this is a collection of images</p>
-        
-        <img src='<%=images.hits[0].largeImageURL%>' width="300">
-        <img src='<%=images.hits[1].largeImageURL%>' width="300">
-        <img src='<%=images.hits[2].largeImageURL%>' width="300">
-        <img src='<%=images.hits[3].largeImageURL%>' width="300">
+
+        <div class="images">
+
+            <div>
+                <span id="likes">Likes: <%=images[0].likes%></span><br>
+                <span id="pic"><img src='<%=images[0].largeImageURL%>' width="300"></span>
+            </div>
+            
+            <div>
+                <span id="likes">Likes: <%=images[1].likes%></span><br>
+                <span id="pic"><img src='<%=images[1].largeImageURL%>' width="300"></span>
+            </div>
+            
+            <div>
+                <span id="likes">Likes: <%=images[2].likes%></span><br>
+                <span id="pic"><img src='<%=images[2].largeImageURL%>' width="300"></span>
+            </div>
+            
+            <div>
+                <span id="likes">Likes: <%=images[3].likes%></span><br>
+                <span id="pic"><img src='<%=images[3].largeImageURL%>' width="300"></span>
+            </div>
+            
+        </div>
         
     </body>
     
-    <!--todo: display shit-->
 </html>

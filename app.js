@@ -5,41 +5,49 @@ app.use(express.static("public")); //folder for images, css, js
 
 const request = require("request");
 
+const _ = require("underscore");
+
+
 
 
 //routes
 app.get("/", async function(req, res){
     
-    let parsedData = await getImgs("otters");
+    let searchData = ["otters", "fairy", "food", "internet"];
     
-    console.log("parsed data:" + parsedData);
+    let parsedData = await getImgs(searchData[Math.floor(Math.random() * searchData.length)], "horizontal");
     
-    res.render("index", {"image": parsedData.hits[0].largeImageURL});
+    // console.log("parsed data:" + parsedData);
+    
+    res.render("index", {"image": parsedData.hits[Math.floor(Math.random() * parsedData.hits.length)].largeImageURL});
     
 }); // root and route can be a homophone depending on where you lived
 
 app.get("/results", async function(req, res){
     
-    // console.dir(req);
-    
+
     let keyword = req.query.keyword; // gets value that user types 
     
-    let parsedData = await getImgs(keyword);
+    let orientation = req.query.orientation; // gets value that user types 
     
+    // console.log(orientation);
     
+    let parsedData = await getImgs(keyword, orientation);
     
-    res.render("results", {"images": parsedData});
+    let shuffledPics = _.shuffle(parsedData.hits);
     
-}); // results
+    res.render("results", {"images": shuffledPics});
+    
+});
 
 
 // return items from jason
-function getImgs(s) {
+function getImgs(s, o) {
     
     return new Promise(function(resolve, reject){
         let parsedData = "";
         
-        request("https://pixabay.com/api/?key=13797842-30194f345aadde7f2e5ce2c85&q=" + s, 
+        request("https://pixabay.com/api/?key=13797842-30194f345aadde7f2e5ce2c85&q=" + s + "&orientation=" + o, 
                 function(error, response, body) {
     
             if (!error && response.statusCode == 200) {
